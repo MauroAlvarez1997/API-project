@@ -18,6 +18,20 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+     return queryInterface.bulkInsert(options, [
+      {
+        reviewId: 1,
+        url: 'https://texascasualcottages.com/sites/default/files/styles/front_header/public/BalsamFir-61_WebCrop_0.jpg?itok=7sXg7EMz'
+      },
+      {
+        reviewId: 2,
+        url: 'https://texascasualcottages.com/sites/default/files/styles/front_header/public/TexasCC-19.jpg?itok=psozrNAa'
+      },
+      {
+        reviewId: 3,
+        url: 'https://a3w3j4i7.stackpathcdn.com/wp-content/uploads/2015/06/House-with-minimalist-glass-and-metal-forms-designed-by-Shiflet-Group-Architects-in-West-Austin-Texas.jpg'
+      }
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
@@ -29,7 +43,7 @@ module.exports = {
      */
      const Op = Sequelize.Op;
      return queryInterface.bulkDelete(options, {
-       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+       reviewId: { [Op.in]: [1, 2, 3] }
      }, {});
   }
 };

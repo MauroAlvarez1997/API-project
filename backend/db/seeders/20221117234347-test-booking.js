@@ -18,6 +18,26 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+     return queryInterface.bulkInsert(options, [
+      {
+        spotId: 2,
+        userId: 1,
+        startDate: '12-12-2022',
+        endDate: '12-13-2022'
+      },
+      {
+        spotId: 3,
+        userId: 2,
+        startDate: '12-14-2022',
+        endDate: '12-15-2022'
+      },
+      {
+        spotId: 1,
+        userId: 3,
+        startDate: '12-16-2022',
+        endDate: '12-17-2022'
+      }
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
@@ -29,7 +49,7 @@ module.exports = {
      */
      const Op = Sequelize.Op;
      return queryInterface.bulkDelete(options, {
-       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+       spotId: { [Op.in]: [1, 2, 3] }
      }, {});
   }
 };
