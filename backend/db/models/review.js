@@ -17,14 +17,14 @@ module.exports = (sequelize, DataTypes) => {
         hooks: true
       });
       Review.belongsTo(models.User, {
-        onDelete: 'CASCADE',
+        // onDelete: 'CASCADE',
         foreignKey: 'userId',
-        hooks: true
+        // hooks: true
       });
       Review.belongsTo(models.Spot, {
-        onDelete: 'CASCADE',
+        // onDelete: 'CASCADE',
         foreignKey: 'spotId',
-        hooks: true 
+        // hooks: true
       });
     }
   }

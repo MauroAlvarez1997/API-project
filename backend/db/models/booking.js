@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Booking.belongsTo(models.User, {
-        foreignKey: 'userId',
+        // foreignKey: 'userId',
         onDelete: 'CASCADE',
-        hooks: true
+        // hooks: true
       });
       Booking.belongsTo(models.Spot, {
-        foreignKey: 'spotId',
+        // foreignKey: 'spotId',
         onDelete: 'CASCADE',
-        hooks: true 
+        // hooks: true
       });
     }
   }
@@ -33,21 +33,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     startDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
         isDate: true,
         valid(val){
           const currentDate = Date();
-          const valDate = Date(val);
-          if(valDate < currentDate){
-            throw new Error('Start date must be in the pressent or the future.')
+          const valDate = new Date(val);
+          if(valDate <= currentDate){
+            throw new Error("endDate cannot be on or before startDate")
           }
         }
       }
     },
     endDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
         isDate: true,
