@@ -149,17 +149,17 @@ router.delete('/:reviewId', requireAuth, async(req, res)=> {
     }
   })
 
-  if(review.userId !== req.user.id){
-    const err = new Error('You are not the owner of this spot')
-    err.status = 403
-    throw err
-  }
-
   if(!review){
     return res.status(404).json({
       "message": "Review Image couldn't be found",
       "statusCode": 404
     })
+  }
+
+  if(review.userId !== req.user.id){
+    const err = new Error('You are not the owner of this spot')
+    err.status = 403
+    throw err
   }
 
     await review.destroy()

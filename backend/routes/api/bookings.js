@@ -87,7 +87,7 @@ router.delete('/:bookingId', requireAuth, async(req, res)=> {
     })
   }
 
-  if(booking.userId !== req.use.id){
+  if(booking.userId !== req.user.id){
     const err = new Error('You are not the owner of this spot')
     err.status = 403
     throw err
