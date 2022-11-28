@@ -21,14 +21,27 @@ router.delete('/:imageId', requireAuth, async(req, res)=> {
   })
 
   if(!image){
-    return res.json({
+    return res.status(404).json({
       "message": "Spot Image couldn't be found",
       "statusCode": 404
     })
   }
 
+  const spot = await Spot.findOne({
+    where: {
+      id: image.spotId
+    }
+  })
+
+
+  if(req.user.id !== spot.ownerId){
+    const err = new Error('You are not the owner of this image')
+    err.status = 403
+    throw err
+  }
+
     await image.destroy()
-    return res.json({
+    return res.status(200).json({
       "message": "Successfully deleted",
       "statusCode": 200
     })

@@ -26,7 +26,7 @@ router.post('/:reviewId/images', requireAuth, async(req, res)=>{
   });
 
   if(!targetReview){
-    res.json({
+    res.status(404).json({
       "message": "Review couldn't be found",
       "statusCode": 404
     })
@@ -34,7 +34,7 @@ router.post('/:reviewId/images', requireAuth, async(req, res)=>{
 
 
   if(targetReview.ReviewImages.length >= 10){
-    res.json({
+    res.status(403).json({
       "message": "Maximum number of images for this resource was reached",
       "statusCode": 403
     })
@@ -113,7 +113,7 @@ router.put('/:reviewId', requireAuth, async(req, res)=> {
   const reviewId = req.params.reviewId
   const {review, stars} = req.body
   if(!review || !stars){
-    res.json({
+    res.status(400).json({
       "message": "Validation error",
       "statusCode": 400,
       "errors": {
@@ -124,7 +124,7 @@ router.put('/:reviewId', requireAuth, async(req, res)=> {
   }
   const reviewToEdit = await Review.findByPk(reviewId);
   if(!reviewToEdit){
-    res.json({
+    res.status(404).json({
       "message": "Review couldn't be found",
       "statusCode": 404
     })
@@ -149,15 +149,21 @@ router.delete('/:reviewId', requireAuth, async(req, res)=> {
     }
   })
 
+  if(review.userId !== req.user.id){
+    const err = new Error('You are not the owner of this spot')
+    err.status = 403
+    throw err
+  }
+
   if(!review){
-    return res.json({
+    return res.status(404).json({
       "message": "Review Image couldn't be found",
       "statusCode": 404
     })
   }
 
     await review.destroy()
-    return res.json({
+    return res.status(200).json({
       "message": "Successfully deleted",
       "statusCode": 200
     })

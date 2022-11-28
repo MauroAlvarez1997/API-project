@@ -171,7 +171,7 @@ router.post('/', requireAuth, async(req, res)=> {
 
   dataArr.forEach(data=> {
     if(!data){
-      res.json({
+      res.status(400).json({
         message: "Validation Error",
         statusCode: 400,
         errors: {
@@ -212,7 +212,7 @@ router.post('/:spotId/images', requireAuth, async(req, res)=> {
 
   const spot = await Spot.findByPk(spotId)
   if(!spot){
-    res.json(
+    res.status(404).json(
       {
         message: "Spot couldn't be found",
         statusCode: 404
@@ -242,7 +242,7 @@ router.put('/:spotId', requireAuth, async (req, res)=> {
 
   paramsArr.forEach(param => {
     if(!param){
-      res.json({
+      res.status(400).json({
         "message": "Validation Error",
         "statusCode": 400,
         "errors": {
@@ -261,7 +261,7 @@ router.put('/:spotId', requireAuth, async (req, res)=> {
   })
   const spot = await Spot.findByPk(spotId);
   if(!spot){
-    res.json({
+    res.status(404).json({
       "message": "Spot couldn't be found",
       "statusCode": 404
     })
@@ -279,7 +279,7 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
   const userId = req.user.id;
 
   if(!review || !stars){
-    res.json({
+    res.status(400).json({
       "message": "Validation error",
       "statusCode": 400,
       "errors": {
@@ -296,6 +296,14 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
     }
   })
 
+  // for(let review of reviewCheck){
+  //   if(userId == review.userId){
+  //     const err = new Error('User already has a review for this spot')
+  //     err.status = 403
+  //     throw err
+  //   }
+  // }
+
   if(reviewCheck.length){
     const err = new Error('User already has a review for this spot')
     err.status = 403
@@ -304,7 +312,7 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
 
   const spot = await Spot.findByPk(spotId)
   if(!spot){
-    res.json(
+    res.status(404).json(
       {
         message: "Spot couldn't be found",
         statusCode: 404
@@ -342,7 +350,7 @@ router.get('/:spotId/reviews', requireAuth, async(req, res)=> {
   })
 
   if(!spotReviews.length){
-    res.json({
+    res.status(404).json({
       "message": "Spot couldn't be found",
       "statusCode": 404
     })
@@ -378,7 +386,7 @@ router.post('/:spotId/bookings',  requireAuth, async(req, res)=> {
   const userId = req.user.id
 
   if(!startDate || !endDate){
-    res.json({
+    res.status(403).json({
       message: 'can not be left blank'
     })
   }
@@ -392,7 +400,7 @@ router.post('/:spotId/bookings',  requireAuth, async(req, res)=> {
 
   const spot = await Spot.findByPk(spotId)
   if(!spot){
-    res.json({
+    res.status(404).json({
       "message": "Spot couldn't be found",
       "statusCode": 404
     })
@@ -409,19 +417,20 @@ router.post('/:spotId/bookings',  requireAuth, async(req, res)=> {
 
   for(let booking of bookingCheck){
     booking = JSON.parse(JSON.stringify(booking))
-    console.log(booking)
+    // console.log(booking)
     if(startDate > booking.startDate && startDate < booking.endDate){
-      res.json({
+      res.status(403).json({
         message: 'this start ate is urrently taken up'
       })
     }
     if(endDate > booking.startDate && endDate < booking.endDate){
-      res.json({
+      res.status(403).json({
         message: 'this end ate is urrently taken up'
       })
     }
     if(startDate == booking.startDate || endDate == booking.endDate){
-      res.json({
+
+      res.status(403).json({
         "message": "Sorry, this spot is already booked for the specified dates",
         "statusCode": 403,
         "errors": {
@@ -459,10 +468,9 @@ router.get('/:spotId/bookings', requireAuth, async(req, res)=> {
   })
 
   if(!spotIdBookings.length){
-    res.json({
-      "message": "Spot couldn't be found",
-      "statusCode": 404
-    })
+    const err = new Error("Spot couldn't be found")
+    err.status = 404
+    throw err
   }
 
   const bookingArr = []
@@ -493,11 +501,16 @@ router.delete('/:spotId', requireAuth, async(req, res)=> {
     }
   })
 
+  if(spot.ownerId !== req.user.id){
+    const err = new Error('You are not the owner of this spot')
+    err.status = 403
+    throw err
+  }
+
   if(!spot){
-    return res.json({
-      "message": "Review Image couldn't be found",
-      "statusCode": 404
-    })
+    const err = new Error("Review Image couldn't be found")
+    err.status = 404
+    throw err
   }
 
     await spot.destroy()

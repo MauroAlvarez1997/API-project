@@ -52,9 +52,9 @@ router.put('/:bookingId', requireAuth, async(req, res)=> {
   const {startDate, endDate} = req.body;
 
   const bookingCheck = await Booking.findByPk(bookingId)
-  console.log("THIS IS THE CHECK!!!!!!!!!!!!!!!!!!!!!!!!!", bookingCheck)
+
   if(!bookingCheck){
-    res.json({
+    res.status(404).json({
       "message": "Booking couldn't be found",
       "statusCode": 404
     })
@@ -70,7 +70,7 @@ router.put('/:bookingId', requireAuth, async(req, res)=> {
 
 
 
-
+//delete booking
 router.delete('/:bookingId', requireAuth, async(req, res)=> {
   const bookingId = req.params.bookingId;
 
@@ -81,14 +81,20 @@ router.delete('/:bookingId', requireAuth, async(req, res)=> {
   })
 
   if(!booking){
-    return res.json({
+    return res.status(404).json({
       "message": "Review Image couldn't be found",
       "statusCode": 404
     })
   }
 
+  if(booking.userId !== req.use.id){
+    const err = new Error('You are not the owner of this spot')
+    err.status = 403
+    throw err
+  }
+
     await booking.destroy()
-    return res.json({
+    return res.status(200).json({
       "message": "Successfully deleted",
       "statusCode": 200
     })
