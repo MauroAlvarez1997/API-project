@@ -382,8 +382,7 @@ router.post('/:spotId/bookings',  requireAuth, async(req, res)=> {
       message: 'can not be left blank'
     })
   }
-
-
+  console.log(spotId, req.params.spotId)
   // if(startDate >= endDate){
   //   res.json({
   //      message: 'start date cen not be before end date',
@@ -399,14 +398,29 @@ router.post('/:spotId/bookings',  requireAuth, async(req, res)=> {
     })
   }
 
-
+  console.log(spotId, req.params.spotId)
   const bookingCheck = await Booking.findAll({
     where:{
-      spotId,
-      startDate,
-      endDate
+      spotId
+      // startDate,
+      // endDate
     }
   })
+
+  for(let booking of bookingCheck){
+    booking = JSON.parse(JSON.stringify(booking))
+    console.log(booking)
+    if(startDate > booking.startDate && startDate < booking.endDate){
+      res.json({
+        message: 'this start ate is urrently taken up'
+      })
+    }
+    if(endDate > booking.startDate && endDate < booking.endDate){
+      res.json({
+        message: 'this end ate is urrently taken up'
+      })
+    }
+  }
 
   // console.log(bookingCheck)
 
@@ -450,8 +464,6 @@ router.get('/:spotId/bookings', requireAuth, async(req, res)=> {
       "statusCode": 404
     })
   }
-
-
 
   const bookingArr = []
   spotIdBookings.forEach(booking=> {
