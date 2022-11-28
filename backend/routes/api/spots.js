@@ -11,15 +11,29 @@ router.get('/', async(req, res) => {
 
   //--------------------------------------
   let { page, size } = req.query;
-    if(!page) page = 1
-    if(!size) size = 5
+    if(page < 1 || size < 1){
+      res.status(400).json({
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {
+          "page": "Page must be greater than or equal to 1",
+          "size": "Size must be greater than or equal to 1",
+          "maxLat": "Maximum latitude is invalid",
+          "minLat": "Minimum latitude is invalid",
+          "minLng": "Maximum longitude is invalid",
+          "maxLng": "Minimum longitude is invalid",
+          "minPrice": "Maximum price must be greater than or equal to 0",
+          "maxPrice": "Minimum price must be greater than or equal to 0"
+        }
+      })
+    }
 
     let pagination = {}
     if (parseInt(page) >= 1 && parseInt(size) >= 1) {
         pagination.limit = size
         pagination.offset = size * (page - 1)
     }
-  //
+  //----------------------
 
 
 
@@ -59,9 +73,15 @@ router.get('/', async(req, res) => {
     }
     delete spot.SpotImages
   })
+  // spotList.page = page
+  // spotList.size = size
 
   const obj = {}
   obj.Spots = spotList
+
+  obj.page = page
+  obj.size = size
+
   res.json(obj)
 });
 
