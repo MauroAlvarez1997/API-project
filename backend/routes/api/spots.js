@@ -382,7 +382,7 @@ router.post('/:spotId/bookings',  requireAuth, async(req, res)=> {
       message: 'can not be left blank'
     })
   }
-  console.log(spotId, req.params.spotId)
+  // console.log(spotId, req.params.spotId)
   // if(startDate >= endDate){
   //   res.json({
   //      message: 'start date cen not be before end date',
@@ -398,7 +398,7 @@ router.post('/:spotId/bookings',  requireAuth, async(req, res)=> {
     })
   }
 
-  console.log(spotId, req.params.spotId)
+  // console.log(spotId, req.params.spotId)
   const bookingCheck = await Booking.findAll({
     where:{
       spotId
