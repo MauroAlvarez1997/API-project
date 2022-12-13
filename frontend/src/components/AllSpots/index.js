@@ -18,7 +18,7 @@ const AllSpots = () => {
   return(
     <div className="all-spots-container">
       {spotsArr.map(spot => (
-        <ul className="spot-square" key={spot.id}>
+        <div className="spot-square" key={spot.id}>
           <NavLink to={`/spots/${spot.id}`}>
             <img className="spot-img" src={spot.previewImage} alt={`image of spot with id of ${spot.id}`}/>
             <div className="spot-info">
@@ -27,7 +27,7 @@ const AllSpots = () => {
             </div>
             <h3 className="spot-price">${spot.price} night</h3>
           </NavLink>
-        </ul>
+        </div>
       ))}
     </div>
   )
