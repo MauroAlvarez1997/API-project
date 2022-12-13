@@ -1,0 +1,13 @@
+.spot-img{
+  width: 271px;
+  height: 257px;
+  /* object-fit: cover; */
+  vertical-align: bottom;
+  /* position: absolute !important; */
+  cursor: pointer;
+}
+
+.all-spots-container{
+  display: grid;
+  grid-auto-flow: row dense;
+}
