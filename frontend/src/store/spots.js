@@ -3,6 +3,8 @@ import { csrfFetch } from "./csrf";
 const ALL_SPOTS = 'spots/GETALLSPOTS';
 const ONE_SPOT = 'spots/GETSPOTBYID';
 const CREATE_SPOT = 'spots/CREATESPOT';
+const UPDATE_SPOT = 'spots/UPDATESPOT';
+const DELETE_SPOT = 'spots/DELETESPOT';
 
 
 const actionAllSpots = (spots) => ({
@@ -20,17 +22,49 @@ const actionCreateSpot = (spot) => ({
   spot
 });
 
+const actionUpdateSpot = (spot) => ({
+  type: UPDATE_SPOT,
+  spot
+});
+
+const actionDeleteSpot = (spot) => ({
+  type: DELETE_SPOT,
+  spot
+});
+
+export const deleteSpot = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${id}`, {
+    method: 'DELETE',
+  });
+  if (response.ok) {
+    const deletedSpot = await response.json();
+    dispatch(actionDeleteSpot(deletedSpot));
+  }
+};
+
+export const updateSpot = (updatedSpot, id) => async dispatch => {
+  console.log("this is the update spot", updateSpot)
+  const response = await csrfFetch(`/api/spots/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedSpot)
+  })
+  console.log(response)
+  if(response.ok){
+    const updatedSpotJson = await response.json();
+    dispatch(actionUpdateSpot(updatedSpotJson));
+    return updatedSpotJson
+  }
+}
+
 export const createSpot = (newSpot) => async dispatch => {
-  console.log("new spot",newSpot)
   const response = await csrfFetch(`/api/spots`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newSpot)
   });
-  console.log(response)
   if(response.ok){
     const newSpotJson = await response.json();
-    console.log("look here!", newSpot)
     const response2 = await csrfFetch(`/api/spots/${newSpotJson.id}/images`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -82,6 +116,20 @@ const spotReducer = (state = initialState, action) => {
       const newState = {...state};
       const allSpotsCopy = {...state.allSpots};
       allSpotsCopy[action.spot.id] = action.spot
+      newState.allSpots = allSpotsCopy
+      return newState
+    }
+    case UPDATE_SPOT: {
+      const newState = {...state};
+      const allSpotsCopy = {...state.allSpots};
+      allSpotsCopy[action.spot.id] = action.spot
+      newState.allSpots = allSpotsCopy
+      return newState
+    }
+    case DELETE_SPOT: {
+      const newState = {...state};
+      const allSpotsCopy = {...state.allSpots};
+      delete allSpotsCopy[action.spot.id];
       newState.allSpots = allSpotsCopy
       return newState
     }

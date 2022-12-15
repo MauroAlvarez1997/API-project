@@ -254,11 +254,13 @@ router.post('/:spotId/images', requireAuth, async(req, res)=> {
 
   res.json(result)
 });
+
 //Edit a Spot
 router.put('/:spotId', requireAuth, async (req, res)=> {
   const spotId = req.params.spotId
   const {address, city, state, country, lat, lng, name, description, price} = req.body;
   const paramsArr = [address, city, state, country, lat, lng, name, description, price];
+  const user = req.user.id
 
   paramsArr.forEach(param => {
     if(!param){
@@ -285,6 +287,12 @@ router.put('/:spotId', requireAuth, async (req, res)=> {
       "message": "Spot couldn't be found",
       "statusCode": 404
     })
+  }
+
+  if (spot.ownerId !== user) {
+    const err = new Error('You are not not authorized to edit rhis spot.');
+    err.status = 403
+    throw err
   }
 
   spot.set({address, city, state, country, lat, lng, name, description, price})

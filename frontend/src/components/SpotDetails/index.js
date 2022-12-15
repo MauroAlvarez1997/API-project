@@ -1,14 +1,20 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpotById } from '../../store/spots';
+import { deleteSpot } from '../../store/spots';
+import { useHistory } from 'react-router-dom';
 import './SpotDetails.css'
+
 
 
 const SpotDetails = () => {
   const dispatch = useDispatch()
   const { spotId } = useParams()
-  const specificSpot = useSelector(state => state.spots.singleSpot)
+  const specificSpot = useSelector(state => state.spots.singleSpot);
+  const currnetUserId = useSelector(state => state.session.user.id)
+  // const [errors, setErrors] = useState([]);
+  const history = useHistory()
 
   const spotArr = Object.entries(specificSpot)
 
@@ -25,6 +31,22 @@ const SpotDetails = () => {
 
   if(!specificSpot.SpotImages){
     return null;
+  }
+
+  const deleteSpotFunc = async (e) => {
+    e.preventDefault()
+    // setErrors([]);
+    // if(specificSpot.ownerId !== currnetUserId){
+    //   throw new Error('This user is not authorized to delete')
+    //   .catch(async (res) => {
+    //     const data = await res.json();
+    //     console.log(data)
+    //     if(data && data.errors) setErrors(data.errors);
+    //     if(data && data.message) setErrors([data.message]);
+    //   })
+    // }
+    await dispatch(deleteSpot(spotId));
+    history.push('/')
   }
 
   return(
@@ -119,6 +141,21 @@ const SpotDetails = () => {
                           </div>
                         </div>
                       </div>
+                      {/* <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                      </ul> */}
+                      {(specificSpot.ownerId === currnetUserId) &&
+                      <div>
+                        <div>
+                          <NavLink to={`/spots/${specificSpot.id}/update`}>Update Spot</NavLink>
+                        </div>
+                        <div>
+                          <button onClick={deleteSpotFunc}>
+                            Delete Spot
+                          </button>
+                        </div>
+                      </div>
+                      }
                       {/* <div className='cost-box'>
                         <div className='checkin-and-out-container'>
                           <div className='chekin-box'>

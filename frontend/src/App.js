@@ -7,6 +7,7 @@ import AllSpots from "./components/AllSpots";
 import SpotDetails from "./components/SpotDetails";
 import { Route } from "react-router-dom";
 import CreateSpot from "./components/CreateSpot";
+import UpdateSpot from "./components/UpdateSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path={'/spots/new'}>
             <CreateSpot />
+          </Route>
+          <Route exact path={'/spots/:spotId/update'}>
+            <UpdateSpot />
           </Route>
           <Route exact path={'/spots/:spotId'}>
             <SpotDetails/>
