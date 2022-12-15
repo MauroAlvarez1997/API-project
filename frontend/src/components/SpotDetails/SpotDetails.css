@@ -1,0 +1,249 @@
+.top-information-container{
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.title-information{
+  padding-top: 48px;
+  padding-bottom: 24px;
+}
+
+.location-name-title{
+  margin-bottom: 10px;
+}
+
+.spot-description{
+  padding-top: 48px;
+  padding-bottom: 24px;
+}
+
+.lower-information{
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-information-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-star-review{
+  margin-right: 5px;
+}
+
+.title-num-reviews{
+  margin-right: 5px;
+  text-decoration:underline;
+}
+
+.title-location{
+  margin-left: 5px;
+  text-decoration:underline;
+}
+
+.right-information-container{
+  display: flex;
+}
+
+.title-save{
+  margin-left: 10px;
+}
+
+.spot-detail-body{
+  max-width: 1120px;
+  margin: auto;
+}
+
+.image-container{
+  display: flex;
+  justify-content: center;
+}
+
+.specific-spot-img{
+  width: 100%;
+  border-radius: 18px
+}
+
+.spot-information-container{
+  display: flex;
+}
+
+.spot-information-left{
+  position: relative !important;
+  width: 58.333333333333336% !important;
+  margin-left: 0% !important;
+  margin-right: 0% !important;
+}
+
+.spot-information-right{
+  position: relative !important;
+  width: 33.33333333333333% !important;
+  margin-left: 8.333333333333332% !important;
+  margin-right: 0% !important;
+}
+
+.sticky-layer-1{
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: var(--navigation-bar-offset, 80px) !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  display: inline-block !important;
+  padding-right: 1px !important;
+}
+
+.sticky-layer-2{
+  padding-bottom: 48px;
+}
+
+.sticky-card-layer-1{
+  --gp-section-max-width: 1120px;
+}
+
+.sticky-card-layer-2{
+  margin-top: 48px;
+  --gp-section-top-margin: 48;
+}
+
+.sticky-card-layer-3{
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.card-container{
+  color: rgb(34, 34, 34) !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+}
+
+.price-box{
+  display: flex;
+}
+
+.card-price-bold{
+  font-weight: bold;
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.price-review-bar{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.review-box{
+  display: flex;
+}
+
+.star-avg-rating{
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.dot-numReviews{
+  color: gray;
+  text-decoration:underline;
+}
+
+.wont-be-charged{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 8px;
+}
+
+.checkin-and-out-container{
+  display: flex;
+  justify-content: center;
+
+}
+
+.chekin-box{
+  display: flex;
+  justify-content: flex-end;
+  border-right: 1px solid black;
+}
+
+.check-in{
+  display: flex;
+  align-items: flex-end;
+  max-width: 93%;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  color: gray;
+}
+
+.check-out{
+  display: flex;
+  max-width: 93%;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  color: gray;
+}
+
+.guest-container{
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid black;
+}
+
+.guest-box{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.guest-input{
+  display: flex;
+  width: 320px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  color: gray;
+}
+
+.cost-box{
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.reserve-button-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.reserve-button{
+  background-color: #FF385C;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.spot-information-text-title{
+  margin-bottom: 10px;
+}
+
+.detail-list-container{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.detail-list-key{
+  font-weight: bold;
+
+}

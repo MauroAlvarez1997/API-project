@@ -7,7 +7,7 @@ import './AllSpots.css';
 const AllSpots = () => {
   const dispatch = useDispatch();
 
-  const allSpots = useSelector(state => state.spots);
+  const allSpots = useSelector(state => state.spots.allSpots);
 
   const spotsArr = Object.values(allSpots);
 
@@ -20,12 +20,15 @@ const AllSpots = () => {
       {spotsArr.map(spot => (
         <div className="spot-square" key={spot.id}>
           <NavLink to={`/spots/${spot.id}`}>
-            <img className="spot-img" src={spot.previewImage} alt={`image of spot with id of ${spot.id}`}/>
+            <img className="spot-img" src={spot.previewImage} alt={`spot with id of ${spot.id}`}/>
             <div className="spot-info">
-              <h3 className="spot-location">{spot.city}, {spot.state}</h3>
-              <h3 className="spot-rating">{spot.avgRating}</h3>
+              <div className="spot-location">{spot.city}, {spot.state}</div>
+              <div className="spot-rating"><i className="fa-solid fa-star fa-xs"></i>{spot.avgRating}</div>
             </div>
-            <h3 className="spot-price">${spot.price} night</h3>
+            <div className="spot-price-container">
+              <div className="spot-price">${spot.price} </div>
+              <div className="night-text">night</div>
+            </div>
           </NavLink>
         </div>
       ))}

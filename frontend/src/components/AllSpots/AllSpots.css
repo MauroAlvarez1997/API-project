@@ -1,16 +1,20 @@
 .spot-img{
-  width:245px;
+  width: 100px;
   border-radius: 8px;
-  height: 233px;
+  height: 250px;
 }
 
 .all-spots-container{
-  /* min-width: 200px; */
-  max-width: 800px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
-  grid-gap: 30px;
-  margin-bottom: 30px;
+
+  display: flex;
+  width: 1120px;
+  margin: auto;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.spot-square{
+  width: 300px;
 }
 
 .all-spots-container div img{
@@ -20,3 +24,26 @@
 
 a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
+a{
+  color: black;
+}
+
+.spot-info{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.spot-location{
+  font-weight: bold;
+}
+
+.spot-price{
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.spot-price-container{
+  display: flex;
+}
