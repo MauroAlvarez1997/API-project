@@ -4,21 +4,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSpotById } from '../../store/spots';
 import { deleteSpot } from '../../store/spots';
 import { useHistory } from 'react-router-dom';
-import { getSpotReviews } from '../../store/reviews';
+import { getSpotReviews, deleteReview } from '../../store/reviews';
 import './SpotDetails.css'
-
-
 
 const SpotDetails = () => {
   const dispatch = useDispatch()
   const { spotId } = useParams()
   const specificSpot = useSelector(state => state.spots.singleSpot);
-  const currnetUserId = useSelector(state => state.session.user.id);
-  const thisSpotsReviews = useSelector(state => state.reviews.spot)
+  const currentStete = useSelector(state => state)
 
-  console.log('CHECK HERE!!!!', thisSpotsReviews)
+  let currnetUserId;
+  if(currentStete.session.user){
+    currnetUserId = currentStete.session.user.id;
+  }
+  console.log('currentState',currentStete)
+
+  let thisSpotsReviews;
+  if(currentStete.reviews){
+    thisSpotsReviews = currentStete.reviews.spot;
+  }
 
   const reviewsArr = Object.values(thisSpotsReviews)
+  console.log('reviewsArr',reviewsArr)
 
   // const [errors, setErrors] = useState([]);
   const history = useHistory()
@@ -36,10 +43,9 @@ const SpotDetails = () => {
     dispatch(getSpotById(spotId));
   }, [spotId]);
 
-
   useEffect(()=> {
     dispatch(getSpotReviews(spotId))
-  }, [dispatch])
+  }, [spotId])
 
   if(!specificSpot.SpotImages){
     return null;
@@ -60,6 +66,14 @@ const SpotDetails = () => {
     await dispatch(deleteSpot(spotId));
     history.push('/')
   }
+
+  // const deleteReviewFunc = async (e) => {
+  //   e.preventDefault()
+
+  //   await dispatch(deleteReview(spotId));
+  // }
+
+
 
   return(
     <div className='spot-detail-body'>
@@ -133,7 +147,12 @@ const SpotDetails = () => {
          </div>
         </div>
         <div className='AllReviewsBody'>
-          {reviewsArr.map(reviewObj => (
+          {!reviewsArr.length &&
+          <div>
+            There are currently no reviews to display for this spot
+          </div>
+          }
+          {thisSpotsReviews && reviewsArr.map(reviewObj => (
             <div className='reviewbox' key={reviewObj.id}>
               <div className='topBarOfReviewBar'>
                 <div className='leftSideOftopBarOfReviewBar'>
@@ -178,6 +197,18 @@ const SpotDetails = () => {
                     <div className='updatedAtContent'>
                       {reviewObj.updatedAt}
                     </div>
+                  </div>
+                  <div className='updatedAtContentBox'>
+                    {(currnetUserId === reviewObj.userId) &&
+                    <button onClick={async (e) => {
+                      e.preventDefault()
+
+                      await dispatch(deleteReview(reviewObj.id));
+                      history.push(`/`)
+                    }}>
+                      Delete Review
+                    </button>
+                    }
                   </div>
                 </div>
               </div>
@@ -239,6 +270,13 @@ const SpotDetails = () => {
                           <button onClick={deleteSpotFunc}>
                             Delete Spot
                           </button>
+                        </div>
+                      </div>
+                      }
+                      {((specificSpot.ownerId !== currnetUserId)&& currnetUserId) &&
+                      <div>
+                        <div>
+                          <NavLink to={`/reviews/${specificSpot.id}/create`}>Create Review</NavLink>
                         </div>
                       </div>
                       }

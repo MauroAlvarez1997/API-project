@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import CreateSpot from "./components/CreateSpot";
 import UpdateSpot from "./components/UpdateSpot";
 import UserReviews from "./components/UserReviews";
+import CreateReview from "./components/CreateReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path={'/reviews/my-reviews'}>
             <UserReviews/>
+          </Route>
+          <Route exact path={'/reviews/:spotId/create'}>
+            <CreateReview />
           </Route>
         </Switch>
       )}

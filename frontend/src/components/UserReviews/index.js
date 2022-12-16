@@ -1,12 +1,22 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserReviews } from '../../store/reviews';
+import { useHistory } from 'react-router-dom';
+import { deleteReview } from '../../store/reviews';
 import './UserReviews.css'
 
 const UserReviews = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const thisUsersReviews = useSelector(state => state.reviews.user)
+  const currentStete = useSelector(state => state)
 
+  let currnetUserId;
+  if(currentStete.session.user){
+    currnetUserId = currentStete.session.user.id;
+  }
+
+  console.log(thisUsersReviews)
   const reviewsArr = Object.values(thisUsersReviews)
 
   useEffect(()=> {
@@ -22,6 +32,11 @@ const UserReviews = () => {
          </div>
         </div>
         <div className='AllReviewsBody'>
+        {!reviewsArr.length &&
+          <div>
+            You currently have no reviews to display
+          </div>
+          }
           {reviewsArr.map(reviewObj => (
             <div className='reviewbox' key={reviewObj.id}>
               <div className='topBarOfReviewBar'>
@@ -67,6 +82,18 @@ const UserReviews = () => {
                     <div className='updatedAtContent'>
                       {reviewObj.updatedAt}
                     </div>
+                  </div>
+                  <div className='updatedAtContentBox'>
+                    {(currnetUserId === reviewObj.userId) &&
+                    <button onClick={async (e) => {
+                      e.preventDefault()
+
+                      await dispatch(deleteReview(reviewObj.id));
+                      history.push(`/`)
+                    }}>
+                      Delete Review
+                    </button>
+                    }
                   </div>
                 </div>
               </div>

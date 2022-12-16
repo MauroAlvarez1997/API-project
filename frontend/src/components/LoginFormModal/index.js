@@ -25,6 +25,13 @@ function LoginFormModal() {
       );
   };
 
+
+  const demoSubmit = () =>{
+    setCredential('Demo-lition');
+    setPassword('password');
+    return dispatch(sessionActions.login({credential, password}))
+  }
+
   return (
     <>
       <h1>Log In</h1>
@@ -53,6 +60,7 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button onClick={demoSubmit} type="submit">Demo User Log In</button>
       </form>
     </>
   );

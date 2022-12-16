@@ -361,7 +361,7 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
 })
 
 
-router.get('/:spotId/reviews', requireAuth, async(req, res)=> {
+router.get('/:spotId/reviews', async(req, res)=> {
   const spotId = req.params.spotId;
   const spotReviews = await Review.findAll({
     where: {

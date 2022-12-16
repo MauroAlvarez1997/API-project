@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
 import { createSpot } from '../../store/spots';
 
 const CreateSpot = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory()
+  
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
@@ -32,12 +33,13 @@ const CreateSpot = () => {
     };
 
     setErrors([]);
-    return dispatch(createSpot(newSpot))
+    await dispatch(createSpot(newSpot))
     .catch(async (res) => {
       const data = await res.json();
       console.log(data)
       if (data && data.errors) setErrors(data.errors);
     });
+    history.push('/')
   };
 
   return(
