@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpotById } from '../../store/spots';
 import { deleteSpot } from '../../store/spots';
 import { useHistory } from 'react-router-dom';
+import { getSpotReviews } from '../../store/reviews';
 import './SpotDetails.css'
 
 
@@ -12,7 +13,13 @@ const SpotDetails = () => {
   const dispatch = useDispatch()
   const { spotId } = useParams()
   const specificSpot = useSelector(state => state.spots.singleSpot);
-  const currnetUserId = useSelector(state => state.session.user.id)
+  const currnetUserId = useSelector(state => state.session.user.id);
+  const thisSpotsReviews = useSelector(state => state.reviews.spot)
+
+  console.log('CHECK HERE!!!!', thisSpotsReviews)
+
+  const reviewsArr = Object.values(thisSpotsReviews)
+
   // const [errors, setErrors] = useState([]);
   const history = useHistory()
 
@@ -29,6 +36,11 @@ const SpotDetails = () => {
     dispatch(getSpotById(spotId));
   }, [spotId]);
 
+
+  useEffect(()=> {
+    dispatch(getSpotReviews(spotId))
+  }, [dispatch])
+
   if(!specificSpot.SpotImages){
     return null;
   }
@@ -40,7 +52,7 @@ const SpotDetails = () => {
     //   throw new Error('This user is not authorized to delete')
     //   .catch(async (res) => {
     //     const data = await res.json();
-    //     console.log(data)
+    //
     //     if(data && data.errors) setErrors(data.errors);
     //     if(data && data.message) setErrors([data.message]);
     //   })
@@ -111,6 +123,80 @@ const SpotDetails = () => {
                   <hr></hr>
                 </div>
               ))}
+            </div>
+            <div>
+            <div>
+      <div className='userReviewPageContainer'>
+        <div className='userReviewsTopTitleBar'>
+          <div className='titleForUserReviews'>
+          All Current Spots Reviews:
+         </div>
+        </div>
+        <div className='AllReviewsBody'>
+          {reviewsArr.map(reviewObj => (
+            <div className='reviewbox' key={reviewObj.id}>
+              <div className='topBarOfReviewBar'>
+                <div className='leftSideOftopBarOfReviewBar'>
+                  <div className='ReviewIdContentBox'>
+                    <div className='ReviewIdContentTitle'>
+                      Review ID:
+                    </div>
+                    <div className='ReviewIdContent'>
+                      {reviewObj.id}
+                    </div>
+                  </div>
+                  <div className='SpotIdContentBox'>
+                    <div className='SpotIdContentTitle'>
+                      User ID:
+                    </div>
+                    <div className='SpotIdContent'>
+                      {reviewObj.userId}
+                    </div>
+                  </div>
+                  <div className='starsContentBox'>
+                    <div className='starsContentTitle'>
+                      Star Rating:
+                    </div>
+                    <div className='starsContent'>
+                      {reviewObj.stars}
+                    </div>
+                  </div>
+                </div>
+                <div className='rightSideOftopBarOfReviewBar'>
+                  <div className='createdAtContentBox'>
+                    <div className='createdAtContentTitle'>
+                      Created:
+                    </div>
+                    <div className='createdAtContent'>
+                      {reviewObj.createdAt}
+                    </div>
+                  </div>
+                  <div className='updatedAtContentBox'>
+                    <div className='updatedAtContentTitle'>
+                      Last Updated:
+                    </div>
+                    <div className='updatedAtContent'>
+                      {reviewObj.updatedAt}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='bottomBarOfReviewBar'>
+                <div className='reviewContentBox'>
+                  <div className='reviewContentTitle'>
+                    Review:
+                  </div>
+                  <div className='reviewContent'>
+                    {reviewObj.review}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </div>
+    </div>
             </div>
           </div>
         </div>

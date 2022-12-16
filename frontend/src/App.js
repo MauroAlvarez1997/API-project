@@ -8,6 +8,7 @@ import SpotDetails from "./components/SpotDetails";
 import { Route } from "react-router-dom";
 import CreateSpot from "./components/CreateSpot";
 import UpdateSpot from "./components/UpdateSpot";
+import UserReviews from "./components/UserReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path={'/spots/:spotId'}>
             <SpotDetails/>
+          </Route>
+          <Route exact path={'/reviews/my-reviews'}>
+            <UserReviews/>
           </Route>
         </Switch>
       )}

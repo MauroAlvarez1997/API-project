@@ -18,6 +18,11 @@ function Navigation({ isLoaded }){
         <ul className='top-bar-right-list'>
           <li>
             {sessionUser &&
+              <NavLink className="create-spot-link" exact to="/reviews/my-reviews">My Reviews</NavLink>
+            }
+          </li>
+          <li>
+            {sessionUser &&
               <NavLink className="create-spot-link" exact to="/spots/new">Create Spot</NavLink>
             }
           </li>
