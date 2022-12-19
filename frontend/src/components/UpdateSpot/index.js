@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSpot } from '../../store/spots';
+import './UpdateSpot.css'
 
 const UpdateSpot = () => {
   const dispatch = useDispatch();
@@ -41,12 +42,14 @@ const UpdateSpot = () => {
   };
 
   return specificSpot && (
-    <>
+    <div className='UpdateSpotPage'>
+      <div className='UpdateSpotContainer'>
       <h1>Update Spot form</h1>
-      <form onSubmit={handleSubmit}>
+      <form className='input-field-form-update' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
+        <div className='UpdateSpotInfoContainer'>
         <label>
           Address
           <input
@@ -110,9 +113,13 @@ const UpdateSpot = () => {
             required
           />
         </label>
-        <button type="submit">Update Spot</button>
+        </div>
+        <div className='UpdateSpotButtonContainer'>
+          <button className='UpdateSpotButton' type="submit">Update Spot</button>
+        </div>
       </form>
-    </>
+      </div>
+    </div>
   )
 }
 
