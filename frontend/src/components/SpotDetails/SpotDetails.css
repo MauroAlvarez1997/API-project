@@ -4,8 +4,11 @@
 }
 
 .title-information{
+  display: flex;
+  justify-content: space-between;
   padding-top: 48px;
   padding-bottom: 24px;
+  margin-bottom: 15px;
 }
 
 .location-name-title{
@@ -13,6 +16,10 @@
 }
 
 .spot-description{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+
   padding-top: 48px;
   padding-bottom: 24px;
 }
@@ -247,3 +254,164 @@
   font-weight: bold;
 
 }
+
+.AllReviewsBody{
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  max-height: 100% !important;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+.reviewbox{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding-right: 70px;
+  margin-top: 25px;
+}
+
+.topBarOfReviewBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+.leftSideOftopBarOfReviewBar{
+  display: flex;
+}
+
+.review-prerson-icon{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Bottom-Information-Container{
+  border-top: 1px solid gray;
+  margin-top: 30px;
+  margin-bottom: 400px;
+}
+
+.name-and-date-for-review{
+  padding-left: 10px;
+}
+
+.reviewContentBox{
+  padding-left: 10px;
+  margin-top: 15px;
+}
+
+.userReviewsTopTitleBar{
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+
+.title-information-right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.under-spot-name-and-host{
+  margin-top: 13px;
+}
+
+
+.fa-door-open, .info-block-1-info-gray, .fa-medal, .fa-location-dot{
+  color: rgb(107, 106, 106);
+}
+
+.info-block-1{
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.info-block-1-icon{
+  display: flex;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+hr{
+  background-color: gray;
+}
+
+.aircover-image{
+  height: 26px;
+}
+
+.info-block-2-container{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.content-aircover-conatiner{
+  margin-top: 20px;
+}
+
+.pargraph-information-block-3{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.anemity-cobtainer{
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  max-height: 100% !important;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  margin-top: 30px;
+}
+
+.anemity{
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  /* height: 40px; */
+}
+
+.anemity-icon{
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.anemity-title{
+  display: flex;
+  align-items: center;
+}
+
+.delete-button{
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+}
+
+.clickables-in-sticky, .delete-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  background-color: #FF385C;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+}
+
+/* {(currnetUserId === reviewObj.userId) &&
+  <button onClick={async (e) => {
+    e.preventDefault()
+
+    await dispatch(deleteReview(reviewObj.id));
+    history.push(`/`)
+  }}>
+    Delete Review
+  </button>
+  } */

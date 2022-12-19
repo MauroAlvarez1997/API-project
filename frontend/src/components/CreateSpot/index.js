@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createSpot } from '../../store/spots';
+import './CreateSpot.css'
 
 const CreateSpot = () => {
   const dispatch = useDispatch();
   const history = useHistory()
-  
+
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
@@ -43,9 +44,11 @@ const CreateSpot = () => {
   };
 
   return(
-    <>
-      <h1>Create Spot form</h1>
-      <form onSubmit={handleSubmit}>
+    <div className='createSpotFormPage'>
+      <div className='createSpotFormContainer'>
+      <h1>Create Your Listing</h1>
+      <h3>Your address is only shared with guests after they’ve made a reservation.</h3>
+      <form className='input-field-form' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
@@ -123,7 +126,8 @@ const CreateSpot = () => {
         </label>
         <button type="submit">Create Spot</button>
       </form>
-    </>
+      </div>
+    </div>
   )
 }
 

@@ -8,8 +8,9 @@
 
 .constant-top-bar{
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  width: 1120px;
+  max-width: 1120px;
   margin: auto;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -51,10 +52,83 @@
   align-items: center;
 }
 
+.top-profile-button:hover{
+  border: 1px solid black;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
 .fa-circle-user{
   margin-left: 10px;
 }
 
 .create-spot-link{
   margin-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
+.home-link{
+  color: #ff385c;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.profile-dropdown{
+  list-style: none;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  /* padding: 24px; */
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  position: absolute;
+  background-color: white;
+  width: 250px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.lineBellowMenue{
+  border-bottom: 1px solid gray;
+}
+
+.profile-dropdown > li{
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.dorp-menue-item-div button{
+  border: none;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.dorp-menue-item-div button:hover{
+  border: none;
+  background-color: rgb(221, 221, 221);
+}
+
+
+.dorp-menue-item-div{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding-left: 20px;
+}
+
+.dorp-menue-item-div:hover{
+  background-color: rgb(221, 221, 221);
+}
+
+
+.create-spot-link:hover{
+  /* border: 1px solid rgb(221, 221, 221); */
+  background-color: rgb(221, 221, 221);
+  border-radius: 20px;
+  /* padding: 24px; */
+  height: 100px;
+}
+

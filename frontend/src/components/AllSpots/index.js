@@ -16,6 +16,7 @@ const AllSpots = () => {
   }, [dispatch]);
 
   return(
+    <div className="pageContainer">
     <div className="all-spots-container">
       {spotsArr.map(spot => (
         <div className="spot-square" key={spot.id}>
@@ -32,6 +33,7 @@ const AllSpots = () => {
           </NavLink>
         </div>
       ))}
+    </div>
     </div>
   )
 };

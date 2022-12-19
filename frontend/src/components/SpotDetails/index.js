@@ -74,7 +74,6 @@ const SpotDetails = () => {
   // }
 
 
-
   return(
     <div className='spot-detail-body'>
       <div className='top-information-container'>
@@ -117,120 +116,142 @@ const SpotDetails = () => {
       <div className='spot-information-container'>
         <div className='spot-information-left'>
           <div className='title-information'>
-            <h2 className='spot-name-and-host'>
-              {specificSpot.name} hosted by {specificSpot.Owner.firstName}
-            </h2>
+            <div className='title-information-left'>
+              <h2 className='spot-name-and-host'>
+                {specificSpot.name} hosted by {specificSpot.Owner.firstName}
+              </h2>
+              <div className='under-spot-name-and-host'>
+                8 · guests3 · bedrooms4 · beds3 · baths
+              </div>
+            </div>
+            <div className='title-information-right'>
+              <i className="fa-regular fa-circle-user fa-2xl"></i>
+            </div>
           </div>
           <hr></hr>
           <div className='spot-description'>
-            <h3 className='spot-information-text-title'>
-              Spot Information:
-            </h3>
-            <div>
-              {validArr.map((pair) => (
-                <div key={pair[0]}>
-                  <div className='detail-list-container'>
-                    <p className='detail-list-key'>{pair[0]}: </p>
-                    <p className='detail-list-val'>{pair[1]}</p>
-
-                  </div>
-                  <hr></hr>
-                </div>
-              ))}
-            </div>
-            <div>
-            <div>
-      <div className='userReviewPageContainer'>
-        <div className='userReviewsTopTitleBar'>
-          <div className='titleForUserReviews'>
-          All Current Spots Reviews:
-         </div>
-        </div>
-        <div className='AllReviewsBody'>
-          {!reviewsArr.length &&
-          <div>
-            There are currently no reviews to display for this spot
-          </div>
-          }
-          {thisSpotsReviews && reviewsArr.map(reviewObj => (
-            <div className='reviewbox' key={reviewObj.id}>
-              <div className='topBarOfReviewBar'>
-                <div className='leftSideOftopBarOfReviewBar'>
-                  <div className='ReviewIdContentBox'>
-                    <div className='ReviewIdContentTitle'>
-                      Review ID:
-                    </div>
-                    <div className='ReviewIdContent'>
-                      {reviewObj.id}
-                    </div>
-                  </div>
-                  <div className='SpotIdContentBox'>
-                    <div className='SpotIdContentTitle'>
-                      User ID:
-                    </div>
-                    <div className='SpotIdContent'>
-                      {reviewObj.userId}
-                    </div>
-                  </div>
-                  <div className='starsContentBox'>
-                    <div className='starsContentTitle'>
-                      Star Rating:
-                    </div>
-                    <div className='starsContent'>
-                      {reviewObj.stars}
-                    </div>
-                  </div>
-                </div>
-                <div className='rightSideOftopBarOfReviewBar'>
-                  <div className='createdAtContentBox'>
-                    <div className='createdAtContentTitle'>
-                      Created:
-                    </div>
-                    <div className='createdAtContent'>
-                      {reviewObj.createdAt}
-                    </div>
-                  </div>
-                  <div className='updatedAtContentBox'>
-                    <div className='updatedAtContentTitle'>
-                      Last Updated:
-                    </div>
-                    <div className='updatedAtContent'>
-                      {reviewObj.updatedAt}
-                    </div>
-                  </div>
-                  <div className='updatedAtContentBox'>
-                    {(currnetUserId === reviewObj.userId) &&
-                    <button onClick={async (e) => {
-                      e.preventDefault()
-
-                      await dispatch(deleteReview(reviewObj.id));
-                      history.push(`/`)
-                    }}>
-                      Delete Review
-                    </button>
-                    }
-                  </div>
+            <div className='info-block-1'>
+              <div className='info-block-1-icon'>
+                <div className='door-icon-div'>
+                  <i class="fa-solid fa-door-open fa-xl"></i>
                 </div>
               </div>
-              <div className='bottomBarOfReviewBar'>
-                <div className='reviewContentBox'>
-                  <div className='reviewContentTitle'>
-                    Review:
-                  </div>
-                  <div className='reviewContent'>
-                    {reviewObj.review}
-                  </div>
+              <div className='info-block-1-info'>
+                <h4 className='spot-information-text-title'>
+                Self check-in
+                </h4>
+                <div className='info-block-1-info-gray'>
+                  Check yourself in with the lockbox.
                 </div>
               </div>
             </div>
-          ))}
 
-        </div>
-      </div>
-    </div>
+            <div className='info-block-1'>
+              <div className='info-block-1-icon'>
+                <div className='door-icon-div'>
+                  <i class="fa-solid fa-medal fa-xl"></i>
+                </div>
+              </div>
+              <div className='info-block-1-info'>
+                <h4 className='spot-information-text-title'>
+                  {specificSpot.Owner.firstName} is a Superhost
+                </h4>
+                <div className='info-block-1-info-gray'>
+                  Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
+                </div>
+              </div>
+            </div>
+
+            <div className='info-block-1'>
+              <div className='info-block-1-icon'>
+                <div className='door-icon-div'>
+                <i class="fa-solid fa-location-dot fa-xl"></i>
+                </div>
+              </div>
+              <div className='info-block-1-info'>
+                <h4 className='spot-information-text-title'>
+                  Great location
+                </h4>
+                <div className='info-block-1-info-gray'>
+                  95% of recent guests gave the location a 5-star rating.
+                </div>
+              </div>
             </div>
           </div>
+          <hr></hr>
+          <div className='info-block-2-container'>
+            <div className='image-aircover-conatiner'>
+              <img className='aircover-image' src='https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg' alt='aircover'/>
+            </div>
+            <div className='content-aircover-conatiner'>
+              <div>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
+            </div>
+          </div>
+          <hr></hr>
+          <div className='info-block-2-container'>
+            <div className='container-information-under-air'>
+              <div className='pargraph-information-block-3'>
+                Located right next to the highway allows you to easily travel anywhere in the Houston area: The Woodlands, Katy, Sugarland, Baytown, Conroe, Galveston, etc. So whether you’re relocating and need a temporary home or coming to play and need a place to stay Heart of Houston, this home is geared up to make your Houston visit easy, comfortable, and enjoyable. Come stay with us.
+              </div>
+              <div className='pargraph-information-block-3'>
+                Plenty of FREE street parking is available. We live in same complex and will help you with your needs, and any tips you might need for a great time in Houston.
+              </div>
+              <div className='pargraph-information-block-3'>
+                We have one camera on our front porch. It is there simply to protect package deliveries, and prevent any bad activity. There are no cameras located within the unit.
+              </div>
+              <div className='pargraph-information-block-3'>
+               With a WalkScore of 88, this Montrose/Neartown home has quick access to the best of restaurants, shops, museums, and bars that Houston has to offer.
+              </div>
+              <div className='pargraph-information-block-3'>
+                We do charge $18 per day for every extra guest over 2, which includes infants. If your total is over 2 individuals and an infant is included, you will be billed for the infant after your stay by AirBnB. Our efforts have included but are not limited to a working smoke and CO detector.
+              </div>
+            </div>
+          </div>
+
+          <hr></hr>
+          <div className='info-block-2-container'>
+            <div className='anemetiesTitle'>
+              <h3>
+                What this place offers
+              </h3>
+            </div>
+
+            <div className='anemeties-info-container'>
+              <div className='anemity-cobtainer'>
+                <div className='anemity'>
+                  <i class="fa-solid fa-kitchen-set fa-xl anemity-icon"></i> <div className='anemity-title'>Kitchen</div>
+                </div>
+                <div className='anemity'>
+                  <i class="fa-solid fa-wifi fa-xl anemity-icon"></i> <div className='anemity-title'>Wifi</div>
+                </div>
+                <div className='anemity'>
+                  <i class="fa-solid fa-car-rear fa-xl anemity-icon"></i> <div className='anemity-title'>Free parking</div>
+                </div>
+                <div className='anemity'>
+                  <i class="fa-solid fa-person-swimming fa-xl anemity-icon"></i> <div className='anemity-title'>Shared outdoor pool - available all year, open specific hours</div>
+                </div>
+                <div className='anemity'>
+                  <i class="fa-solid fa-paw fa-xl anemity-icon"></i> <div className='anemity-title'>Pets allowed</div>
+                </div>
+                <div className='anemity'>
+                  <i class="fa-solid fa-tv fa-xl anemity-icon"></i> <div className='anemity-title'>65" HDTV with Disney+, Hulu, Netflix, Roku</div>
+                </div>
+                <div className='anemity'>
+                  <i class="fa-regular fa-snowflake fa-xl anemity-icon"></i> <div className='anemity-title'>Central air conditioning</div>
+                </div>
+                <div className='anemity'>
+                  <i class="fa-solid fa-shield-halved fa-xl anemity-icon"></i> <div className='anemity-title'>Security system on property</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
         </div>
+
+
         <div className='spot-information-right'>
           <div className='sticky-layer-1'>
             <div className='sticky-layer-2'>
@@ -263,11 +284,11 @@ const SpotDetails = () => {
                       </ul> */}
                       {(specificSpot.ownerId === currnetUserId) &&
                       <div>
-                        <div>
+                        <div className='clickables-in-sticky'>
                           <NavLink to={`/spots/${specificSpot.id}/update`}>Update Spot</NavLink>
                         </div>
-                        <div>
-                          <button onClick={deleteSpotFunc}>
+                        <div >
+                          <button className='delete-button' onClick={deleteSpotFunc}>
                             Delete Spot
                           </button>
                         </div>
@@ -275,7 +296,7 @@ const SpotDetails = () => {
                       }
                       {((specificSpot.ownerId !== currnetUserId)&& currnetUserId) &&
                       <div>
-                        <div>
+                        <div className='clickables-in-sticky'>
                           <NavLink to={`/reviews/${specificSpot.id}/create`}>Create Review</NavLink>
                         </div>
                       </div>
@@ -307,6 +328,73 @@ const SpotDetails = () => {
           </div>
 
         </div>
+
+      </div>
+      <div className='Bottom-Information-Container'>
+      <div className='userReviewPageContainer'>
+        <div className='userReviewsTopTitleBar'>
+          <div className='titleForUserReviews'>
+            <h2>
+              <i className="fa-solid fa-star fa-xs">
+              </i>{specificSpot.avgStarRating} · {specificSpot.numReviews} reviews
+            </h2>
+         </div>
+        </div>
+        <div className='AllReviewsBody'>
+          {!reviewsArr.length &&
+          <div>
+            There are currently no reviews to display for this spot
+          </div>
+          }
+          {(thisSpotsReviews && reviewsArr[0]) && reviewsArr.map(reviewObj => (
+            <div className='reviewbox' key={reviewObj.id}>
+              {console.log(currentStete.session.user)}
+              <div className='topBarOfReviewBar'>
+                <div className='leftSideOftopBarOfReviewBar'>
+                  <div className='review-prerson-icon'>
+                    <i className="fa-regular fa-circle-user fa-2xl"></i>
+                  </div>
+                  <div className='name-and-date-for-review'>
+                    <div className='reviewer-name'>
+                      User: #{reviewObj.id}
+                    </div>
+                    <div className='review-date-made'>
+                      {new Date(reviewObj.createdAt).toDateString()}
+
+                    </div>
+                  </div>
+                </div>
+                <div className='rightSideOftopBarOfReviewBar'>
+
+                  <div className='updatedAtContentBox'>
+                    {(currnetUserId === reviewObj.userId) &&
+                    <button onClick={async (e) => {
+                      e.preventDefault()
+
+                      await dispatch(deleteReview(reviewObj.id));
+                      history.push(`/`)
+                    }}>
+                      Delete Review
+                    </button>
+                    }
+                  </div>
+                </div>
+              </div>
+              <div className='bottomBarOfReviewBar'>
+                <div className='reviewContentBox'>
+                  <div className='reviewContentTitle'>
+                    Review:
+                  </div>
+                  <div className='reviewContent'>
+                    {reviewObj.review}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </div>
       </div>
     </div>
   );

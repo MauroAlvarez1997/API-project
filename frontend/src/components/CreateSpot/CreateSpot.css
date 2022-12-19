@@ -1,0 +1,60 @@
+.createSpotFormPage{
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+}
+
+h1{
+  margin-bottom: 30px;
+}
+
+h3{
+  color: gray;
+  margin-bottom: 30px;
+}
+
+.createSpotFormContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 630px;
+}
+
+.input-field-form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+
+label{
+  display: flex;
+  flex-direction: column;
+  color: gray;
+  /* margin-top: 15px; */
+}
+
+input{
+  border: none;
+  height:40px;
+  border-bottom: 2px solid gray;
+  padding-left: 10px;
+}
+
+input:focus{
+  border: none;
+  background-color: rgb(221, 221, 221);
+  /* border: 1px solid white; */
+}
+
+.createSpotFormContainer button{
+  background-color: #FF385C;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  height: 50px;
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+}

@@ -5,7 +5,7 @@ import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
 function SignupFormModal() {
-  
+
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -31,12 +31,13 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="sign-up-modom">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
+        <div className="signup-input-container">
         <label>
           Email
           <input
@@ -91,9 +92,12 @@ function SignupFormModal() {
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
+        </div>
+        <div className="sign-up-button-container">
+        <button className="sign-up-button" type="submit">Sign Up</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

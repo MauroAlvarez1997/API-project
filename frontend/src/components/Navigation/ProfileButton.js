@@ -49,25 +49,38 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
+            <div className="dorp-menue-item-div">
+              <li>{user.username}</li>
+            </div>
+            <div className="dorp-menue-item-div">
+              <li>{user.firstName} {user.lastName}</li>
+            </div>
+            <div className="dorp-menue-item-div">
+              <li >{user.email}</li>
+            </div>
+              <hr></hr>
+              <div className="dorp-menue-item-div">
+              <li>
               <button onClick={logout}>Log Out</button>
-            </li>
+              </li>
+              </div>
           </>
         ) : (
           <>
+          <div className="dorp-menue-item-div">
             <OpenModalMenuItem
               itemText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
+          </div>
+          <div className="dorp-menue-item-div">
             <OpenModalMenuItem
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+          </div>
           </>
         )}
       </ul>

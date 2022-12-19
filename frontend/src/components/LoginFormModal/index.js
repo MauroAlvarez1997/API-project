@@ -33,14 +33,15 @@ function LoginFormModal() {
   }
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="LogInContainer">
+      <h1 className="Log-in-title">Log In</h1>
+      <form  onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
+        <div className="log-in-info-container">
         <label>
           Username or Email
           <input
@@ -59,10 +60,13 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
-        <button onClick={demoSubmit} type="submit">Demo User Log In</button>
+        </div>
+        <div className="modo-buttons-container">
+          <button className="modo-buttons" type="submit">Log In</button>
+          <button className="modo-buttons" onClick={demoSubmit} type="submit">Demo User Log In</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

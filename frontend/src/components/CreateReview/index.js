@@ -38,7 +38,7 @@ const [review, setReview] = useState('');
       if(data && data.errors) setErrors(data.errors);
       if(data && data.message) setErrors([data.message]);
     });
-    
+
     if(dispatchReview){
       history.push(`/spots/${spotId}`)
     }
@@ -46,12 +46,14 @@ const [review, setReview] = useState('');
 
 
   return(
-    <>
+    <div className='createReviewPage'>
+      <div className='createReviewContainer'>
       <h1>Create Review form</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
+        <div className='createReviewInputContainer'>
         <label>
           Star Rating:
           <input
@@ -70,9 +72,13 @@ const [review, setReview] = useState('');
             required
           />
         </label>
-        <button type="submit">Create Review</button>
+        </div>
+        <div className='createReviewButtonContainer'>
+        <button className='createReviewButton' type="submit">Create Review</button>
+        </div>
       </form>
-    </>
+      </div>
+    </div>
   )
 }
 

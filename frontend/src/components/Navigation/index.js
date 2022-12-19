@@ -12,22 +12,21 @@ function Navigation({ isLoaded }){
     <div className='constant-top-bar-container'>
     <div className='constant-top-bar'>
       <div className='constant-top-bar-left'>
-       <img className='airbnb-logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1280px-Airbnb_Logo_B%C3%A9lo.svg.png' alt='spotify logo' />
+        <h1>
+          <NavLink className="home-link" exact to="/">Maubnb</NavLink>
+        </h1>
       </div>
       <div className='constant-top-bar-right'>
         <ul className='top-bar-right-list'>
-          <li>
+          {/* <li>
             {sessionUser &&
               <NavLink className="create-spot-link" exact to="/reviews/my-reviews">My Reviews</NavLink>
             }
-          </li>
+          </li> */}
           <li>
             {sessionUser &&
-              <NavLink className="create-spot-link" exact to="/spots/new">Create Spot</NavLink>
+              <NavLink className="create-spot-link" exact to="/spots/new">Maubnb your home</NavLink>
             }
-          </li>
-          <li>
-            <NavLink className="home-link" exact to="/">Home</NavLink>
           </li>
           {isLoaded && (
             <li>
