@@ -37,7 +37,7 @@ const CreateSpot = () => {
     await dispatch(createSpot(newSpot))
     .catch(async (res) => {
       const data = await res.json();
-      console.log(data)
+      
       if (data && data.errors) setErrors(data.errors);
     });
     history.push('/')
