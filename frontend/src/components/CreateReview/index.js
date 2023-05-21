@@ -10,12 +10,11 @@ const {spotId} = useParams()
 const dispatch = useDispatch()
 const history = useHistory()
 const state = useSelector(state => state);
-console.log(state)
+
 let userId;
 if(state.session.user){
   userId = state.session.user.id
 }
-
 
 const [errors, setErrors] = useState([]);
 const [stars, setStars] = useState('');
