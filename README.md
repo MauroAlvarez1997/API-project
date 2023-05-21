@@ -6,6 +6,56 @@
 <img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/95668375/203384212-82edc18a-61c4-4c95-af33-308e0a1f26e4.png">
 
 
+## Link to live site
+
+> [https://airbnb-personal-project.onrender.com]
+
+## Site Introduction
+
+> Maubnb is a clone inspired by Airbnb. Although the service Airbnb provides isn't available, you can navigate through Maubnb as you would Airbnb and enjoy going through the project of making an account, making a fictional location that others can see and leave reviews on the locations that other users have posted
+
+## Technologies Used
+
+### Frameworks, Platforms and Libraries
+
+> 1. React
+> 2. Redux
+> 3. Javascript
+> 4. Express
+> 5. Sequelize
+> 6. HTML
+> 7. CSS
+
+### Hosting
+
+> 1. Render
+
+## Site Features
+
+### Home Page
+
+![image](https://user-images.githubusercontent.com/95668375/208402968-070b0708-8b47-4181-8c79-0f3d83c9bcbe.png)
+
+### Log In
+
+![image](https://user-images.githubusercontent.com/95668375/208403141-e24c1140-677e-455d-bddd-40d5fea931bb.png)
+
+### Sign Up 
+
+![image](https://user-images.githubusercontent.com/95668375/208403278-68236bf8-4edb-4e57-9e38-8834d56f234d.png)
+
+### Spot Details
+
+![image](https://user-images.githubusercontent.com/95668375/208403569-53b6a969-5766-4c20-9cd8-f05b3dab83c4.png)
+
+### Create a Spot
+
+![image](https://user-images.githubusercontent.com/95668375/208403784-9eb263c5-6d8f-4239-afe8-61c0b3470dbf.png)
+
+### Contact Information
+
+> email: Mauro.Alvarez.jr0@gmail.com
+
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
