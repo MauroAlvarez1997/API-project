@@ -31,7 +31,7 @@
 a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
 a{
-  color: black;
+  color: rgb(1, 1, 1);
 }
 
 .spot-info{
